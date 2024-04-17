@@ -1,9 +1,11 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const { connectToMongo } = require("./Database/connectDb");
-const adminRouter = require("./Route/admin.route");
-const testimonialRouter = require("./Route/testimonial.route");
-const latestUpdateRouter = require("./Route/latestUpdate.route");
+const adminRouter = require("./Route/admin.route.js");
+const testimonialRouter = require("./Route/testimonial.route.js");
+const latestUpdateRouter = require("./Route/latestUpdate.route.js");
+const projectRoutes = require("./Route/project.route.js");
+const bhkRoutes = require("./Route/Features/bhk.route.js");
 
 dotenv.config();
 connectToMongo();
@@ -14,6 +16,12 @@ const app = express();
 app.use(express.json());
 
 app.use("/api/v1/admin", adminRouter);
+
+app.use("/api/v1/project", projectRoutes);
+
+//Features
+app.use("/api/v1/features/bhk", bhkRoutes);
+
 app.use("/api/v1/testimonial", testimonialRouter);
 app.use("/api/v1/latestUpdate", latestUpdateRouter);
 
