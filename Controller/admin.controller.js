@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken");
 const ApiResponse = require("../Utils/apiResponse.js");
 const Admin = require("../Model/admin.model.js");
-// const Reset = require("../models/reset.model.js");
-// const bcrypt = require("bcrypt");
 
 const addAdminHandler = async (req, res) => {
   try {
