@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const path = require("path");
 const { connectToMongo } = require("./Database/connectDb");
 const adminRouter = require("./Route/admin.route.js");
 const testimonialRouter = require("./Route/testimonial.route.js");
@@ -15,10 +16,9 @@ const app = express();
 
 app.use(express.json());
 
+app.use("/media", express.static(path.join(__dirname, "Media")));
 app.use("/api/v1/admin", adminRouter);
-
 app.use("/api/v1/project", projectRoutes);
-
 //Features
 app.use("/api/v1/features/bhk", bhkRoutes);
 

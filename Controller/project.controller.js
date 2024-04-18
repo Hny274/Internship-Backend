@@ -4,7 +4,7 @@ const Project = require("../Model/project.model.js");
 
 const addProject = async (req, res) => {
   try {
-    const project = new Project(req.body);
+    const project = new Project({ ...req.body, image: req.file.filename });
     const data = await project.save();
     return res.status(200).json(new ApiResponse(200, data, "Project Added!"));
   } catch (err) {
@@ -45,7 +45,7 @@ const updateProject = async (req, res) => {
   try {
     const updatedProject = await Project.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      { ...req.body, image: req.file.filename },
       { new: true }
     );
     if (!updatedProject) {

@@ -52,8 +52,8 @@ const adminLoginHandler = async (req, res) => {
   }
 };
 
-const generateToken = (userId) => {
-  return jwt.sign({ userId }, process.env.JWTSECRETKEY, { expiresIn: "1h" });
+const generateToken = (adminId) => {
+  return jwt.sign({ adminId }, process.env.JWTSECRETKEY, { expiresIn: "1h" });
 };
 
 const forgotPassword = async (req, res) => {
