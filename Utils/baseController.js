@@ -30,7 +30,9 @@ const modifyController = (Model) => async (req, res) => {
     let message;
     if (existing) {
       message = "Data Updated!";
-      data = await Model.findByIdAndUpdate(existing._id, req.body);
+      data = await Model.findByIdAndUpdate(existing._id, req.body, {
+        new: true,
+      });
     } else {
       message = "Data Added!";
       data = await Model.create({ projectId, ...req.body });
