@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const bhkSchema = new Schema({
+const floorSchema = new Schema({
   projectId: {
     type: Schema.Types.ObjectId,
     ref: "Project",
@@ -10,7 +10,10 @@ const bhkSchema = new Schema({
     type: String,
     required: [true, "Image is Required"],
   },
-  bhk: [String],
+  description: {
+    type: String,
+    required: [true, "Description is Required"],
+  },
 });
 
-module.exports = model("BHK", bhkSchema);
+module.exports = model("Floor", floorSchema);
