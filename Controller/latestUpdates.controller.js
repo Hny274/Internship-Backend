@@ -3,7 +3,10 @@ const ApiResponse = require("../Utils/apiResponse");
 
 const addLatestUpdate = async (req, res) => {
   try {
-    const latestUpdate = await LatestUpdate.create(req.body);
+    const latestUpdate = await LatestUpdate.create({
+      ...req.body,
+      image: req.file.filename,
+    });
     res
       .status(201)
       .json(
@@ -57,7 +60,7 @@ const updateLatestUpdate = async (req, res) => {
   try {
     const latestUpdate = await LatestUpdate.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      { ...req.body, image: req.file.filename },
       {
         new: true,
         runValidators: true,
