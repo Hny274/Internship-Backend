@@ -10,6 +10,9 @@ const bhkRouter = require("./Route/Features/bhk.route.js");
 const facingRouter = require("./Route/Features/facing.route.js");
 const floorRouter = require("./Route/Features/floor.route.js");
 const advanceFeatureRouter = require("./Route/Features/advanceFeature.route.js");
+const planRouter = require("./Route/Apartment/plan.route.js");
+const viewsRouter = require("./Route/Apartment/views.route.js");
+const facilitiesRouter = require("./Route/Apartment/facilities.route.js");
 
 dotenv.config();
 connectToMongo();
@@ -27,6 +30,10 @@ app.use("/api/v1/features/bhk", bhkRouter);
 app.use("/api/v1/features/facing", facingRouter);
 app.use("/api/v1/features/floor", floorRouter);
 app.use("/api/v1/features/advanceFeature", advanceFeatureRouter);
+
+app.use("/api/v1/apartment/plan", planRouter);
+app.use("/api/v1/apartment/views", viewsRouter);
+app.use("/api/v1/apartment/facilities", facilitiesRouter);
 
 app.use("/api/v1/testimonial", testimonialRouter);
 app.use("/api/v1/latestUpdate", latestUpdateRouter);
