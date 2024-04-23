@@ -47,7 +47,11 @@ const modifyController = (Model, type) => async (req, res) => {
         if (req.file) {
           data = await Model.findByIdAndUpdate(
             existing._id,
-            { image: req.file.filename, ...req.body },
+            {
+              [req.file.filename.includes(".pdf") ? "pdf" : "image"]:
+                req.file.filename,
+              ...req.body,
+            },
             { new: true }
           );
         } else {
@@ -62,7 +66,8 @@ const modifyController = (Model, type) => async (req, res) => {
         data = await Model.create({
           projectId,
           ...req.body,
-          image: req.file.filename,
+          [req.file.filename.includes(".pdf") ? "pdf" : "image"]:
+            req.file.filename,
         });
       } else {
         data = await Model.create({ projectId, ...req.body });
