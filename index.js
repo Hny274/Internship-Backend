@@ -14,6 +14,7 @@ const planRouter = require("./Route/Apartment/plan.route.js");
 const viewsRouter = require("./Route/Apartment/views.route.js");
 const facilitiesRouter = require("./Route/Apartment/facilities.route.js");
 const brochureRouter = require("./Route/brochure.route.js");
+const bookingRouter = require("./Route/booking.route.js");
 
 dotenv.config();
 connectToMongo();
@@ -39,6 +40,7 @@ app.use("/api/v1/apartment/facilities", facilitiesRouter);
 app.use("/api/v1/testimonial", testimonialRouter);
 app.use("/api/v1/latestUpdate", latestUpdateRouter);
 app.use("/api/v1/brochure", brochureRouter);
+app.use("/api/v1/booking", bookingRouter);
 
 app.listen(port, () => {
   console.log(`Server Started on Port:${port}`);
