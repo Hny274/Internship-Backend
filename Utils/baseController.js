@@ -8,7 +8,7 @@ const getController = (Model) => async (req, res) => {
         .status(400)
         .json(new ApiResponse(400, [], "Project Id Missing!"));
     }
-    const data = await Model.find({ projectId });
+    const data = await Model.findOne({ projectId });
     return res
       .status(200)
       .json(new ApiResponse(200, data, "Data get Successfull!"));

@@ -63,13 +63,15 @@ const getAdvertisementById = async (req, res) => {
 
 const updateAdvertisement = async (req, res) => {
   try {
+    let updateFields = { ...req.body };
     let images = [];
     if (req.files && req.files.length > 0) {
       images = req.files.map((file) => file.filename);
+      updateFields.images = images.slice(0, 3);
     }
     const advertisement = await Advertisement.findByIdAndUpdate(
       req.params.id,
-      { ...req.body, images: images.slice(0, 3) },
+      updateFields,
       {
         new: true,
         runValidators: true,

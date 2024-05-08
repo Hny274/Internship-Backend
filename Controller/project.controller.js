@@ -43,9 +43,13 @@ const getProjectById = async (req, res) => {
 
 const updateProject = async (req, res) => {
   try {
+    let updateFields = { ...req.body };
+    if (req.file) {
+      updateFields.image = req.file.filename;
+    }
     const updatedProject = await Project.findByIdAndUpdate(
       req.params.id,
-      { ...req.body, image: req.file.filename },
+      updateFields,
       { new: true }
     );
     if (!updatedProject) {
@@ -58,6 +62,7 @@ const updateProject = async (req, res) => {
     return res.status(500).json(new ApiResponse(500, null, err.message));
   }
 };
+
 
 const deleteProject = async (req, res) => {
   try {
