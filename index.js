@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const path = require("path");
+const cors = require("cors");
 const { connectToMongo } = require("./Database/connectDb");
 const adminRouter = require("./Route/admin.route.js");
 const testimonialRouter = require("./Route/testimonial.route.js");
@@ -22,6 +23,8 @@ connectToMongo();
 
 const port = process.env.PORT || 5000;
 const app = express();
+
+app.use(cors("*"));
 
 app.use(express.json());
 
