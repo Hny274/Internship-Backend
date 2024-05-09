@@ -4,13 +4,13 @@ const ApiResponse = require("../Utils/apiResponse");
 
 const addAdvertisement = async (req, res) => {
   try {
-    let images = [];
-    if (req.files && req.files.length > 0) {
-      images = req.files.map((file) => file.filename);
+    let image = "";
+    if (req.file) {
+      image = req.file.filename;
     }
     const advertisement = await Advertisement.create({
       ...req.body,
-      images: images.slice(0, 3),
+      image: image,
     });
     res
       .status(200)
@@ -64,11 +64,11 @@ const getAdvertisementById = async (req, res) => {
 const updateAdvertisement = async (req, res) => {
   try {
     let updateFields = { ...req.body };
-    let images = [];
+    let image = "";
     if (req.files && req.files.length > 0) {
-      images = req.files.map((file) => file.filename);
-      updateFields.images = images.slice(0, 3);
+      image = req.files[0].filename;
     }
+    updateFields.image = image;
     const advertisement = await Advertisement.findByIdAndUpdate(
       req.params.id,
       updateFields,

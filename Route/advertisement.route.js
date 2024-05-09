@@ -11,11 +11,11 @@ const upload = require("../Middleware/multer.middleware.js");
 const router = express.Router();
 
 router.get("/get-advertisementById/:id", getAdvertisementById);
-router.post("/add-advertisement", upload.array("images", 3), addAdvertisement);
+router.post("/add-advertisement", upload.single("image"), addAdvertisement);
 router.get("/get-advertisements", getAdvertisements);
 router.put(
   "/update-advertisement/:id",
-  upload.array("images", 3),
+  upload.single("image"),
   updateAdvertisement
 );
 router.delete("/delete-advertisement/:id", deleteAdvertisement);
