@@ -62,7 +62,18 @@ const modifyController = (Model, type) => async (req, res) => {
       }
     } else {
       message = "Data Added!";
-      if (req.file) {
+      if (type === "multiple") {
+        if (req.files && req.files.length > 0) {
+          const fileNames = req.files.map((file) => file.filename);
+          data = await Model.create({
+            images: fileNames,
+            ...req.body,
+            projectId,
+          });
+        } else {
+          data = await Model.create({ ...req.body, projectId });
+        }
+      } else if (req.file) {
         data = await Model.create({
           projectId,
           ...req.body,
