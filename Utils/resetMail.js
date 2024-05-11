@@ -15,7 +15,7 @@ exports.sendMail = (to, token) => {
     from: `Habulus Group ${process.env.NODEMAILER_USER}`,
     to,
     subject: "Password Reset",
-    text: `Reset your password by clicking on the following link: http://localhost:5000/verify-token?token=${token}`,
+    text: `Reset your password by clicking on the following link: ${process.env.FRONTEND_ADMIN}/update-password/${token}`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
